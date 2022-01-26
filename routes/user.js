@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 
   const user = await User.create({
     name: req.body.name,
-    password: hashedPW,
+    passwordHash: hashedPW,
   });
   res.status(201).json({ msg: "New user added", data: user });
 });

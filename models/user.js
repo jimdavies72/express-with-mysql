@@ -2,13 +2,13 @@ const { Sequelize, DataTypes } = require("sequelize");
 const connection = require("../connection");
 
 const User = connection.define(
-  "User",
+  "User_a",
   {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    passwordHash: {
       type: DataTypes.STRING,
       allowNull: false,
     },
