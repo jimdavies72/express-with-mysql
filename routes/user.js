@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 // get all users = *
@@ -13,9 +14,12 @@ router.get("/", async (req, res) => {
 
 // create a user = *
 router.post("/", async (req, res) => {
+  const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
+  const hashedPW = await bcrypt.hash(req.body.password, salt);
+
   const user = await User.create({
     name: req.body.name,
-    passwordHash: req.body.password,
+    password: hashedPW,
   });
   res.status(201).json({ msg: "New user added", data: user });
 });

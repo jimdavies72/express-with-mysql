@@ -8,7 +8,7 @@ const User = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    passwordHash: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
